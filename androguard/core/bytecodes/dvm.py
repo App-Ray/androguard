@@ -1541,7 +1541,7 @@ class EncodedValue(object):
         ret = 0
         shift = 0
         for b in buf:
-            ret |= ord(b) << shift
+            ret |= b << shift
             shift += 8
 
         return ret, buf
@@ -1857,9 +1857,9 @@ class StringDataItem(object):
         self.utf16_size = readuleb128(buff)
 
         self.data = utf8_to_string(buff, self.utf16_size)
-        expected = buff.read(1)
+        expected = buff.read(1).decode()
         if expected != '\x00':
-            warning('\x00 expected at offset: %x, found: %x' %
+            warning('\x00 expected at offset: %d, found: %s' %
                     (buff.get_idx(), expected))
 
     def get_utf16_size(self):

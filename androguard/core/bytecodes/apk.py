@@ -437,7 +437,8 @@ class APK(object):
         return self.files
 
     def _patch_magic(self, buffer, orig):
-        if ("Zip" in orig) or ("DBase" in orig):
+        o = orig.decode()
+        if ("Zip" in o) or ("DBase" in o):
             val = androconf.is_android_raw(buffer)
             if val == "APK":
                 if androconf.is_valid_android_raw(buffer):
@@ -1500,7 +1501,7 @@ class AXMLPrinter(object):
                 )) + self.axml.getName() + '\n'
                 self.buff += self.axml.getXMLNS()
 
-                for i in range(0, self.axml.getAttributeCount()):
+                for i in range(0, int(self.axml.getAttributeCount())):
                     self.buff += "%s%s=\"%s\"\n" % (
                         self.getPrefix(
                             self.axml.getAttributePrefix(i)),
