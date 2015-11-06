@@ -1082,7 +1082,7 @@ class StringBlock(object):
         return string
 
     def decodeLength(self, offset, sizeof_char):
-        length = ord(self.m_charbuff[offset])
+        length = self.m_charbuff[offset]
 
         sizeof_2chars = sizeof_char << 1
         fmt_chr = 'B' if sizeof_char == 1 else 'H'
