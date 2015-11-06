@@ -174,7 +174,7 @@ class DvMethod(object):
         return self.ast
 
     def show_source(self):
-        print self.get_source()
+        print(self.get_source())
 
     def get_source(self):
         if self.writer:
@@ -272,7 +272,7 @@ class DvClass(object):
             'super': parse_descriptor(self.superclass),
             'flags': self.access,
             'isInterface': isInterface,
-            'interfaces': map(parse_descriptor, self.interfaces),
+            'interfaces': list(map(parse_descriptor, self.interfaces)),
             'fields': fields,
             'methods': methods,
         }
@@ -368,7 +368,7 @@ class DvClass(object):
         return source
 
     def show_source(self):
-        print self.get_source()
+        print(self.get_source())
 
     def __repr__(self):
         return 'Class(%s)' % self.name
@@ -386,10 +386,10 @@ class DvMachine(object):
         #util.merge_inner(self.classes)
 
     def get_classes(self):
-        return self.classes.keys()
+        return list(self.classes.keys())
 
     def get_class(self, class_name):
-        for name, klass in self.classes.iteritems():
+        for name, klass in self.classes.items():
             if class_name in name:
                 if isinstance(klass, DvClass):
                     return klass
@@ -397,7 +397,7 @@ class DvMachine(object):
                 return dvclass
 
     def process(self):
-        for name, klass in self.classes.iteritems():
+        for name, klass in self.classes.items():
             logger.info('Processing class: %s', name)
             if isinstance(klass, DvClass):
                 klass.process()
@@ -406,11 +406,11 @@ class DvMachine(object):
                 dvclass.process()
 
     def show_source(self):
-        for klass in self.classes.values():
+        for klass in list(self.classes.values()):
             klass.show_source()
 
     def process_and_show(self):
-        for name, klass in sorted(self.classes.iteritems()):
+        for name, klass in sorted(self.classes.items()):
             logger.info('Processing class: %s', name)
             if not isinstance(klass, DvClass):
                 klass = DvClass(klass, self.vma)
@@ -442,7 +442,7 @@ def main():
         logger.info(' %s', class_name)
     logger.info('========================')
 
-    cls_name = raw_input('Choose a class: ')
+    cls_name = input('Choose a class: ')
     if cls_name == '*':
         machine.process_and_show()
     else:
@@ -454,7 +454,7 @@ def main():
             for i, method in enumerate(cls.get_methods()):
                 logger.info('%d: %s', i, method.name)
             logger.info('======================')
-            meth = raw_input('Method: ')
+            meth = input('Method: ')
             if meth == '*':
                 logger.info('CLASS = %s', cls)
                 cls.process()

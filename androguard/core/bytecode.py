@@ -79,7 +79,7 @@ def _Print(name, arg):
     elif isinstance(arg, SVs):
         buff += arg.get_value().__str__()
 
-    print buff
+    print(buff)
 
 
 def PrettyShowEx(exceptions):

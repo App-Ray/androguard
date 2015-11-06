@@ -209,7 +209,7 @@ class SourceWindow(QtGui.QTextEdit):
         androconf.debug("Xref asked for '%s' (%d, %d)" %
                         (selection, start, end))
 
-        if start not in self.doc.binding.keys():
+        if start not in list(self.doc.binding.keys()):
             self.mainwin.showStatus("Xref not available. No info for: '%s'." %
                                     selection)
             return
@@ -303,7 +303,7 @@ class SourceWindow(QtGui.QTextEdit):
         androconf.debug("Rename asked for '%s' (%d, %d)" %
                         (selection, start, end))
 
-        if start not in self.doc.binding.keys():
+        if start not in list(self.doc.binding.keys()):
             self.mainwin.showStatus("Rename not available. No info for: '%s'." %
                                     selection)
             return
@@ -354,7 +354,7 @@ class SourceWindow(QtGui.QTextEdit):
         androconf.debug("Goto asked for '%s' (%d, %d)" %
                         (selection, start, end))
 
-        if start not in self.doc.binding.keys():
+        if start not in list(self.doc.binding.keys()):
             self.mainwin.showStatus("Goto not available. No info for: '%s'." %
                                     selection)
             return
@@ -389,7 +389,7 @@ class SourceWindow(QtGui.QTextEdit):
         end = cursor.selectionEnd()
         androconf.debug("actionInfo asked for (%d, %d)" % (start, end))
 
-        if start in self.doc.binding.keys():
+        if start in list(self.doc.binding.keys()):
             self.mainwin.showStatus('%s at position: (%d, %d)' %
                                     (str(self.doc.binding[start]), start, end))
         else:

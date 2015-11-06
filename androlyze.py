@@ -75,7 +75,7 @@ def main(options, arguments):
         interact()
 
     elif options.version != None:
-        print "Androguard version %s" % androconf.ANDROGUARD_VERSION
+        print("Androguard version %s" % androconf.ANDROGUARD_VERSION)
 
 
 if __name__ == "__main__":

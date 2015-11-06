@@ -43,7 +43,7 @@ class AndroLog(object):
 class AndroTest(auto.DirectoryAndroAnalysis):
 
     def analysis_app(self, log, apkobj, dexobj, adexobj):
-        print log.id_file, log.filename, apkobj, dexobj, adexobj
+        print(log.id_file, log.filename, apkobj, dexobj, adexobj)
 
 
 def main(options, arguments):

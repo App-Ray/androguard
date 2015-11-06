@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import re, random, cPickle, collections
+import re, random, pickle, collections
 
 from androguard.core.androconf import error, warning, debug, is_ascii_problem,\
     load_api_specific_resource_module
@@ -491,23 +491,23 @@ class MethodAnalysis(object):
         return self.method
 
     def show(self):
-        print "METHOD", self.method.get_class_name(), self.method.get_name(
-        ), self.method.get_descriptor()
+        print("METHOD", self.method.get_class_name(), self.method.get_name(
+        ), self.method.get_descriptor())
 
         for i in self.basic_blocks.get():
-            print "\t", i
+            print("\t", i)
             i.show()
-            print ""
+            print("")
 
     def show_methods(self):
-        print "\t #METHODS :"
+        print("\t #METHODS :")
         for i in self.__bb:
             methods = i.get_methods()
             for method in methods:
-                print "\t\t-->", method.get_class_name(), method.get_name(
-                ), method.get_descriptor()
+                print("\t\t-->", method.get_class_name(), method.get_name(
+                ), method.get_descriptor())
                 for context in methods[method]:
-                    print "\t\t\t |---|", context.details
+                    print("\t\t\t |---|", context.details)
 
     def get_tags(self):
         """
@@ -714,7 +714,7 @@ class newVMAnalysis(object):
     def create_xref(self):
         debug("Creating XREF/DREF")
 
-        instances_class_name = self.classes.keys()
+        instances_class_name = list(self.classes.keys())
 
         last_vm = self.vms[-1]
         for current_class in last_vm.get_classes():

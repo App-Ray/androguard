@@ -47,7 +47,7 @@ def test(got, expected):
         prefix = ' OK '
     else:
         prefix = '  X '
-    print '%s got: %s expected: %s' % (prefix, repr(got), repr(expected))
+    print('%s got: %s expected: %s' % (prefix, repr(got), repr(expected)))
 
 
 s = Session()
@@ -61,8 +61,8 @@ for method in d.get_methods():
     if key not in VALUES:
         continue
 
-    print "METHOD", method.get_class_name(), method.get_name(
-    ), method.get_descriptor()
+    print("METHOD", method.get_class_name(), method.get_name(
+    ), method.get_descriptor())
 
     code = method.get_code()
     bc = code.get_bc()
@@ -72,7 +72,7 @@ for method in d.get_methods():
         if "const" in i.get_name():
             i.show(0)
             formatted_operands = i.get_formatted_operands()
-            print formatted_operands
+            print(formatted_operands)
             if not formatted_operands:
                 VALUES[key].pop(0)
             else:

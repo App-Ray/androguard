@@ -25,4 +25,4 @@ for i in vmx.get_methods():
 
     tags = i.get_tags()
     if not tags.empty():
-        print tags
+        print(tags)

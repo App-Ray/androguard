@@ -5,7 +5,7 @@ from androguard.core.bytecodes.apk import *
 from androguard.core.analysis.analysis import *
 from androguard.decompiler.decompiler import *
 
-from cPickle import dumps, loads
+from pickle import dumps, loads
 from androguard.core import androconf
 
 

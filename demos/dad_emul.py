@@ -170,12 +170,12 @@ method.show()
 
 
 def show_mem(visitor):
-    print 'Memory[4]: %s' % visitor.mem[4]
-    print '==> %r' % ''.join(chr(i) for i in visitor.mem[4])
+    print('Memory[4]: %s' % visitor.mem[4])
+    print('==> %r' % ''.join(chr(i) for i in visitor.mem[4]))
 
 
 show_mem(visitor)
-print '\nStarting visit...',
+print('\nStarting visit...', end=' ')
 graph.get_entry().visit(visitor)
-print ' done !\n'
+print(' done !\n')
 show_mem(visitor)
