@@ -54,6 +54,8 @@ if sys.hexversion < 0x2070000:
 else:
     ZIPMODULE = 1
 
+ZIPMODULE = 2
+
 
 ################################################### CHILKAT ZIP FORMAT #####################################################
 class ChilkatZip(object):
@@ -961,7 +963,7 @@ def show_Certificate(cert):
         cert.subjectL(), cert.subjectO(), cert.subjectOU(), cert.subjectS()))
 
 ################################## AXML FORMAT ########################################
-# Translated from 
+# Translated from
 # http://code.google.com/p/android4me/source/browse/src/android/content/res/AXmlResourceParser.java
 
 UTF8_FLAG = 0x00000100
