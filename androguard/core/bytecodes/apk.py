@@ -1204,7 +1204,7 @@ class AXMLParser(object):
                 if chunkSize < 8 or chunkSize % 4 != 0:
                     androconf.warning("Invalid chunk size")
 
-                for i in range(0, chunkSize / 4 - 2):
+                for i in range(0, int(chunkSize / 4 - 2)):
                     self.m_resourceIDs.append(
                         unpack('<L', self.buff.read(4))[0])
 
