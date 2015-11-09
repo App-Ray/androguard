@@ -2094,6 +2094,7 @@ class ProtoIdItem(object):
         self.shorty_idx_value = self.CM.get_string(self.shorty_idx)
         self.return_type_idx_value = self.CM.get_type(self.return_type_idx)
         params = self.CM.get_type_list(self.parameters_off)
+        params = [p.decode() for p in params]
         self.parameters_off_value = '({})'.format(' '.join(params))
 
     def get_shorty_idx(self):
@@ -2648,7 +2649,12 @@ class EncodedField(object):
         name = self.CM.get_field(self.field_idx)
         self.class_name = name[0]
         self.name = name[2]
-        self.proto = ''.join(i for i in name[1])
+        cleaned_names = []
+        for i in name[1]:
+            if hasattr(i, 'decode'):
+                i = i.decode()
+            cleaned_names.append("%s" % i)
+        self.proto = ''.join(cleaned_names)
 
     def set_init_value(self, value):
         """
@@ -2874,8 +2880,12 @@ class EncodedMethod(object):
 
         self.class_name = v[0]
         self.name = v[1]
-        self.proto = ''.join(i for i in v[2])
-
+        cleaned_v2 = []
+        for i in v[2]:
+            if hasattr(i, 'decode'):
+                i = i.decode()
+            cleaned_v2.append("%s" % i)
+        self.proto = ''.join(cleaned_v2)
         self.code = self.CM.get_code(self.code_off)
 
     def get_locals(self):
